@@ -1,27 +1,15 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# iconable_avatar
+Flutter package to show an avatar with a clickable custom icon on the bottom. It's a customizable widget
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+## Instalation
+Include `iconable_avatar` in your `pubspec.yaml` file:
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  iconable_avatar: version
+```
 
 ## Usage
 
@@ -32,8 +20,14 @@ to `/example` folder.
 const like = 'sample';
 ```
 
-## Additional information
+## Constructor params
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+|  Name | Description   | Required   | Default   |
+| ------------ | ------------ | ------------ | ------------ |
+| radius  | Double value to indicate the avatar radius. Make sure to use the same avatar radius | True   |   |
+| avatar  | Widget to use as avatar, make sure to use an avatar, if not, the widget won't work |  True  |  |
+| iconVisible  | Bool value to indicate when to show or hide the bottom section | False   | true |
+| onIconTap  | Callback use when tap on icon | False   |   |
+| icon  | Icondata to show on the bottom section | False   |  Icons.camera_alt |
+| iconColor  | Color used as icon color | False   | Colors.black |
+| backgroundIconColor  | Color used as background for bottom section | False   | Color.fromRGBO(0, 0, 0, 0.3) |

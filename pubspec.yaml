@@ -1,5 +1,5 @@
 name: iconable_avatar
-description: Flutter package to show an avatar with a clickable icon on the bottom
+description: Flutter package to show an avatar with a clickable custom icon on the bottom. It's a customizable widget
 version: 0.0.1
 homepage:
 
