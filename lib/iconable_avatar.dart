@@ -28,10 +28,10 @@ class IconableAvatar extends StatefulWidget {
   final Color? backgroundIconColor;
 
   IconableAvatar({
-    Key? key, 
+    Key? key,
     required this.radius,
-    required this.avatar, 
-    this.iconVisible = true, 
+    required this.avatar,
+    this.iconVisible = true,
     this.onIconTap,
     this.icon = Icons.camera_alt,
     this.iconColor = Colors.black,
@@ -87,7 +87,11 @@ class _IconableAvatarState extends State<IconableAvatar> {
               width: width,
               height: widget.iconVisible! ? height : 0,
               child: IconButton(
-                icon: Icon(widget.icon, size: height * 0.85, color: widget.iconColor,),
+                icon: Icon(
+                  widget.icon,
+                  size: height * 0.85,
+                  color: widget.iconColor,
+                ),
                 onPressed: widget.onIconTap,
               ),
             ),

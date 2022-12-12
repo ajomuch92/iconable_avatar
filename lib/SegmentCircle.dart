@@ -26,13 +26,13 @@ class SegmentCircle extends CustomClipper<Path> {
     }
     if (_coordinates.isEmpty) {
       List<double> hk = _findCircle(0, 0, width, 0, width / 2, height);
-      for(double x in _xCoordinates) {
-      double y = _evaluateCircleFunction(height, width, x, hk[0], hk[1]);
-      _coordinates.add([x,y]);
-    }
+      for (double x in _xCoordinates) {
+        double y = _evaluateCircleFunction(height, width, x, hk[0], hk[1]);
+        _coordinates.add([x, y]);
+      }
     }
     Path path = Path();
-    for(List<double> coordinate in _coordinates) {
+    for (List<double> coordinate in _coordinates) {
       path.lineTo(coordinate[0], coordinate[1]);
     }
     path.close();
@@ -40,7 +40,8 @@ class SegmentCircle extends CustomClipper<Path> {
   }
 
   /// method to evaluate a X coordinate and generate the Y coordinate
-  double _evaluateCircleFunction(double height, double width, double x, double h, double k) {
+  double _evaluateCircleFunction(
+      double height, double width, double x, double h, double k) {
     double y = sqrt(pow(radius, 2) - pow(x - h, 2)) + k;
     return y;
   }
@@ -49,8 +50,8 @@ class SegmentCircle extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
 
   /// Method to calculate the values used as h and k to generate the function to draw the circle
-  List<double> _findCircle(double x1, double y1, double x2, double y2, double x3, double y3)
-  {
+  List<double> _findCircle(
+      double x1, double y1, double x2, double y2, double x3, double y3) {
     double x12 = x1 - x2;
     double x13 = x1 - x3;
 
@@ -70,19 +71,15 @@ class SegmentCircle extends CustomClipper<Path> {
     double sy13 = (pow(y1, 2) - pow(y3, 2)) as double;
 
     double sx21 = (pow(x2, 2) - pow(x1, 2)) as double;
-            
+
     double sy21 = (pow(y2, 2) - pow(y1, 2)) as double;
 
-    double f = ((sx13) * (x12)
-        + (sy13) * (x12)
-        + (sx21) * (x13)
-        + (sy21) * (x13))
-        / (2 * ((y31) * (x12) - (y21) * (x13)));
-    double g = ((sx13) * (y12)
-        + (sy13) * (y12)
-        + (sx21) * (y13)
-        + (sy21) * (y13))
-        / (2 * ((x31) * (y12) - (x21) * (y13)));
+    double f =
+        ((sx13) * (x12) + (sy13) * (x12) + (sx21) * (x13) + (sy21) * (x13)) /
+            (2 * ((y31) * (x12) - (y21) * (x13)));
+    double g =
+        ((sx13) * (y12) + (sy13) * (y12) + (sx21) * (y13) + (sy21) * (y13)) /
+            (2 * ((x31) * (y12) - (x21) * (y13)));
 
     double c = -pow(x1, 2) - pow(y1, 2) - 2 * g * x1 - 2 * f * y1;
 
@@ -97,6 +94,4 @@ class SegmentCircle extends CustomClipper<Path> {
     // double r = sqrt(sqr_of_r);
     return [h, k];
   }
-
-
 }
