@@ -50,7 +50,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -79,7 +78,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 print('Hi :)');
               },
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             IconableAvatar(
               avatar: const CircleAvatar(
                 backgroundColor: Colors.blueGrey,
@@ -90,7 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 print('Hi :)');
               },
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             IconableAvatar(
               avatar: const CircleAvatar(
                 backgroundColor: Colors.pink,

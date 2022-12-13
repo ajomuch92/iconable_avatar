@@ -86,20 +86,24 @@ class _IconableAvatarState extends State<IconableAvatar> {
         widget.avatar,
         Positioned(
           bottom: 0,
-          child: ClipPath(
-            clipper: SegmentCircle(radius: radius),
-            child: AnimatedContainer(
-              color: widget.backgroundIconColor,
-              duration: const Duration(milliseconds: 200),
-              width: width,
-              height: widget.iconVisible! ? height : 0,
-              child: IconButton(
-                icon: Icon(
-                  widget.icon,
-                  size: height * 0.85,
-                  color: widget.iconColor,
+          child: Visibility(
+            visible: widget.iconVisible!,
+            child: ClipPath(
+              clipper: SegmentCircle(radius: radius),
+              child: Container(
+                color: widget.backgroundIconColor,
+                width: width,
+                height: height,
+                child: Center(
+                  child: InkWell(
+                    onTap: widget.onIconTap,
+                    child: Icon(
+                      widget.icon,
+                      size: height * 0.85,
+                      color: widget.iconColor,
+                    ),
+                  ),
                 ),
-                onPressed: widget.onIconTap,
               ),
             ),
           ),
