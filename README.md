@@ -38,3 +38,7 @@ IconableAvatar(
 | icon  | Icondata to show on the bottom section | False   |  Icons.camera_alt |
 | iconColor  | Color used as icon color | False   | Colors.black |
 | backgroundIconColor  | Color used as background for bottom section | False   | Color.fromRGBO(0, 0, 0, 0.3) |
+
+## Development
+
+Want to contribute? Great!. Open a [new PR here](https://github.com/ajomuch92/iconable_avatar/pulls) or a [new issue here](https://github.com/ajomuch92/iconable_avatar/issues)
