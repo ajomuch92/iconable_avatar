@@ -11,21 +11,28 @@ dependencies:
   iconable_avatar: version
 ```
 
+<img src="https://raw.githubusercontent.com/ajomuch92/iconable_avatar/main/demo.png" width="200" height="429"/>
+
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+IconableAvatar(
+  avatar: CircleAvatar(
+    backgroundColor: Colors.amberAccent,
+    radius: 50,
+  ),
+  onIconTap: () {
+    print('Hi :)');
+  },
+)
 ```
 
 ## Constructor params
 
 |  Name | Description   | Required   | Default   |
 | ------------ | ------------ | ------------ | ------------ |
-| radius  | Double value to indicate the avatar radius. Make sure to use the same avatar radius | True   |   |
 | avatar  | Widget to use as avatar, make sure to use an avatar, if not, the widget won't work |  True  |  |
+| customRadius  | Double value to indicate the avatar radius when using a not CircleAvatar widget | False   |   |
 | iconVisible  | Bool value to indicate when to show or hide the bottom section | False   | true |
 | onIconTap  | Callback use when tap on icon | False   |   |
 | icon  | Icondata to show on the bottom section | False   |  Icons.camera_alt |
