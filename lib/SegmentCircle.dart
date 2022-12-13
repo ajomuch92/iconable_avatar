@@ -14,13 +14,28 @@ class SegmentCircle extends CustomClipper<Path> {
   /// List with the value of the coordinate x,y to draw the custom clipper
   final List<List<double>> _coordinates = [];
 
+  /// int value to define the number of deltas
+  final int _deltas = 5000;
+
   SegmentCircle({this.radius = 0});
 
   @override
   Path getClip(Size size) {
+    calculateCoordinates(size);
+    Path path = Path();
+    for (List<double> coordinate in _coordinates) {
+      path.lineTo(coordinate[0], coordinate[1]);
+    }
+    path.close();
+    return path;
+  }
+
+  /// method to calculate all the coordinates for path
+  /// size is the size for the path
+  void calculateCoordinates(Size size) {
     double width = size.width;
     double height = size.height;
-    double delta = width / 5000;
+    double delta = width / _deltas;
     if (_xCoordinates.isEmpty) {
       _xCoordinates = List.generate(5000, (index) => delta * (index + 1));
     }
@@ -31,15 +46,9 @@ class SegmentCircle extends CustomClipper<Path> {
         _coordinates.add([x, y]);
       }
     }
-    Path path = Path();
-    for (List<double> coordinate in _coordinates) {
-      path.lineTo(coordinate[0], coordinate[1]);
-    }
-    path.close();
-    return path;
   }
 
-  /// method to evaluate a X coordinate and generate the Y coordinate
+  /// Method to evaluate a X coordinate and generate the Y coordinate
   double _evaluateCircleFunction(
       double height, double width, double x, double h, double k) {
     double y = sqrt(pow(radius, 2) - pow(x - h, 2)) + k;
@@ -47,7 +56,7 @@ class SegmentCircle extends CustomClipper<Path> {
   }
 
   @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => true;
+  bool shouldReclip(CustomClipper<Path> oldClipper) => true;
 
   /// Method to calculate the values used as h and k to generate the function to draw the circle
   List<double> _findCircle(
@@ -64,10 +73,8 @@ class SegmentCircle extends CustomClipper<Path> {
     double x31 = x3 - x1;
     double x21 = x2 - x1;
 
-    /// Delta x1^2 - x3^2
     double sx13 = (pow(x1, 2) - pow(x3, 2)) as double;
 
-    /// Delta y1^2 - y3^2
     double sy13 = (pow(y1, 2) - pow(y3, 2)) as double;
 
     double sx21 = (pow(x2, 2) - pow(x1, 2)) as double;
@@ -81,9 +88,6 @@ class SegmentCircle extends CustomClipper<Path> {
         ((sx13) * (y12) + (sy13) * (y12) + (sx21) * (y13) + (sy21) * (y13)) /
             (2 * ((x31) * (y12) - (x21) * (y13)));
 
-    /// eqn of circle be x^2 + y^2 + 2*g*x + 2*f*y + c = 0
-    /// where centre is (h = -g, k = -f) and radius r
-    /// as r^2 = h^2 + k^2 - c
     double h = -g;
     double k = -f;
     return [h, k];
