@@ -6,10 +6,13 @@ import 'SegmentCircle.dart';
 
 /// Widget to show an avatar with a bottom section with a tappable icon
 class IconableAvatar extends StatefulWidget {
-  /// Double value to indicate the avatar radius. Make sure to use the same avatar radius
-  final double radius;
+  /// Double value to indicate the avatar radius
+  late final double _radius;
 
-  /// Widget to use as avatar, make sure to use an avatar, if not, the widget won't work
+  /// Double value to indicate the avatar radius when using a not CircleAvatar widget
+  final double? customRadius;
+
+  /// Widget to use as avatar, make sure to use an avatar, if not, use the custom radius prop to indicate the avatar radius
   final Widget avatar;
 
   /// Bool value to indicate when to show or hide the bottom section
@@ -27,19 +30,23 @@ class IconableAvatar extends StatefulWidget {
   /// Color used as background for bottom section
   final Color? backgroundIconColor;
 
-  IconableAvatar({
-    Key? key,
-    required this.radius,
-    required this.avatar,
-    this.iconVisible = true,
-    this.onIconTap,
-    this.icon = Icons.camera_alt,
-    this.iconColor = Colors.black,
-    this.backgroundIconColor = const Color.fromRGBO(0, 0, 0, 0.3),
-  }) : super(key: key) {
-    assert(avatar is CircleAvatar);
-    CircleAvatar _avatar = avatar as CircleAvatar;
-    assert(_avatar.radius == radius);
+  IconableAvatar(
+      {Key? key,
+      required this.avatar,
+      this.iconVisible = true,
+      this.onIconTap,
+      this.icon = Icons.camera_alt,
+      this.iconColor = Colors.black,
+      this.backgroundIconColor = const Color.fromRGBO(0, 0, 0, 0.3),
+      this.customRadius})
+      : super(key: key) {
+    if (customRadius == null) {
+      assert(avatar is CircleAvatar);
+      CircleAvatar _avatar = avatar as CircleAvatar;
+      _radius = _avatar.radius!;
+    } else {
+      _radius = customRadius!;
+    }
   }
 
   @override
@@ -52,7 +59,7 @@ class _IconableAvatarState extends State<IconableAvatar> {
   @override
   void initState() {
     super.initState();
-    radius = widget.radius;
+    radius = widget._radius;
     diameter = radius * 2;
     height = diameter / 5;
     _getWidth();
