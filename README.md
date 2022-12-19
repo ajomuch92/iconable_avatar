@@ -31,7 +31,7 @@ IconableAvatar(
 
 |  Name | Description   | Required   | Default   |
 | ------------ | ------------ | ------------ | ------------ |
-| avatar  | Widget to use as avatar. You can use a CircleAvatar widget, in otherwise, pass a custom radius |  True  |  |
+| avatar  | Widget to use as avatar. You can use a CircleAvatar widget (make sure to pass a radius > 0), in otherwise, pass a custom radius |  True  |  |
 | customRadius  | Double value to indicate the avatar radius when using a not CircleAvatar widget | False   |   |
 | iconVisible  | Bool value to indicate when to show or hide the bottom section | False   | true |
 | onIconTap  | Callback use when tap on icon | False   |   |
