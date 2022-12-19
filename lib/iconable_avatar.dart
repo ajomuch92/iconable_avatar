@@ -43,8 +43,10 @@ class IconableAvatar extends StatefulWidget {
     if (customRadius == null) {
       assert(avatar is CircleAvatar);
       CircleAvatar _avatar = avatar as CircleAvatar;
+      assert(_avatar.radius != null && _avatar.radius! > 0);
       _radius = _avatar.radius!;
     } else {
+      assert(customRadius! > 0);
       _radius = customRadius!;
     }
   }
